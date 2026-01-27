@@ -1,0 +1,15 @@
+env-file:
+  - path: .env
+    required: true
+include:
+  #(disable as your wish)
+  - mediawiki.yaml
+  - nextcloud.yaml
+  - overleaf.yaml
+  - gitlab.yaml
+  # reverse proxy
+  - frp.yaml
+  - nginx.yaml
+  # unified-login
+  - keycloak.yaml
+  - openldap.yaml

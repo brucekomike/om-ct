@@ -1,0 +1,4 @@
+services:
+  frpc:
+    image: snowdreamtech/frpc
+    container_name: frpc
