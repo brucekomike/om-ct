@@ -1,13 +1,22 @@
 #!/bin/bash
-if [[ -f ./.env ]];then
-  echo ".env file exists"
-else
-  env_contents=$(cat .env.template)
-  DEFAULT_DOMAIN=$HOSTNAME.local
-  eval "echo \"$env_contents\"" | tee .env > /dev/null
-  echo ".env file generated"
-fi
+# process env file
+# usage: $0 <env file>
+function gen_env(){
+  source_conf="$1"
+  processed_name="${1%.template}"
+  if [[ -f $processed_name ]];then
+    echo "$processed_name exists"
+  else
+    env_contents=$(cat $source_conf)
+    eval "echo \"$env_contents\"" | tee $processed_name > /dev/null
+    echo "$processed_name file generated"
+  fi
+}
+for i in *.template;do
+  gen_env $i
+done
 
+# process compose file
 if [[ -f ./compose.yaml ]];then
   echo "compose file exists"
 else

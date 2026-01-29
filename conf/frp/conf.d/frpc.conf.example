@@ -1,0 +1,29 @@
+# please make sure these name are:
+# unique in ALL clients
+# otherwise config overwritten triggered
+[[proxies]]
+name = "http"
+type = "http"
+localIP = "pkg"
+localPort = 80
+customDomains = ["your-domain.local"]
+transport.useEncryption = true
+transport.useCompression = true
+
+[[proxies]]
+name = "https"
+type = "https"
+localIP = "127.0.0.1"
+localPort = 443
+customDomains = ["your-domain.local"]
+transport.useEncryption = true
+transport.useCompression = true
+
+[[proxies]]
+name = "ssh"
+type = "tcp"
+localIP = "127.0.0.1"
+localPort = 22
+remotePort = 22222
+transport.useEncryption = true
+transport.useCompression = true

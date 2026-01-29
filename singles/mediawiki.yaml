@@ -1,0 +1,20 @@
+services:
+  mediawiki-fpm:
+    container_name: php-fpm
+    image: mediawiki:1.43.6-fpm
+    build: medaiwiki43.dockerfile
+    networks:
+      - fpm
+    ports:
+      - "9000:9000"
+  nginx:
+    image: nginx:trixie
+    volumes:
+      - ../conf/nginx:/etc/nginx/conf.d
+    networks:
+      - fpm
+    ports:
+      - "8080:80"
+networks:
+  fpm:
+    driver: bridge
