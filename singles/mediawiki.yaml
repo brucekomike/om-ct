@@ -1,6 +1,6 @@
 services:
   mediawiki-fpm:
-    container_name: php-fpm
+    container_name: wiki-fpm
     image: mediawiki:1.43.6-fpm
     build: medaiwiki43.dockerfile
     networks:

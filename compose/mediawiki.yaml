@@ -1,12 +1,14 @@
 services:
   mediawiki-fpm:
-    container_name: php-fpm
+    container_name: wiki-fpm
     image: ossmediawiki:1.45.1-fpm
     networks:
       - front_tier
       - back_tier
     env_file:
       - .env.mediawiki
+    volumes:
+      - mediawiki_uploads:/var/www/html/images
   wiki_db:
     container_name: wiki_db
     image: mariadb:12.1.2-noble
@@ -14,6 +16,11 @@ services:
       - .env.mediawiki
     networks:
       - back_tier
-networks:
-  back_tier:
-    driver: bridge
+    volumes:
+      - mariadb_data:/var/lib/mysql
+      - mariadb_backups:/backups
+volumes:
+  mariadb_backups:
+  mariadb_data:
+  mediawiki_localsettings:
+  mediawiki_uploads:
