@@ -11,8 +11,6 @@ services:
         nginx['enable'] = false
         web_server['external_users'] = ['www-data']
         gitlab_rails['trusted_proxies'] = [ '192.168.0.0/24' ]
-        
-
     ports:
       - '80:80'
       - '443:443'

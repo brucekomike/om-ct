@@ -1,0 +1,19 @@
+services:
+  mediawiki-fpm:
+    container_name: php-fpm
+    image: ossmediawiki:1.45.1-fpm
+    networks:
+      - front_tier
+      - back_tier
+    env_file:
+      - .env.mediawiki
+  wiki_db:
+    container_name: wiki_db
+    image: mariadb:12.1.2-noble
+    env_file:
+      - .env.mediawiki
+    networks:
+      - back_tier
+networks:
+  back_tier:
+    driver: bridge

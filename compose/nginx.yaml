@@ -1,1 +1,15 @@
 services:
+  nginx:
+    image: nginx:trixie
+    volumes:
+      - ../conf/nginx:/etc/nginx/conf.d
+    networks:
+      - front_tier
+      - frp
+    ports:
+      - "8080:80"
+networks:
+  front_tier:
+    driver: bridge
+  frp:
+    driver: bridge

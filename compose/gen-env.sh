@@ -12,7 +12,7 @@ function gen_env(){
     echo "$processed_name file generated"
   fi
 }
-for i in *.template;do
+for i in .*.template;do
   gen_env $i
 done
 
