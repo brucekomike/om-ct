@@ -1,4 +1,4 @@
-FROM mediawiki:1.43.6-fpm
+FROM mediawiki:1.43.6
 
 ARG CITIZEN_VER=3.12.0
 ARG MW_VERSION=REL1_43

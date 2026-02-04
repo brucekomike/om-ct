@@ -1,7 +1,7 @@
 services:
   mediawiki-fpm:
-    container_name: wiki-fpm
-    image: ossmediawiki:1.45.1-fpm
+    container_name: wiki
+    image: ossmediawiki:1.45.1
     networks:
       - front_tier
       - back_tier
