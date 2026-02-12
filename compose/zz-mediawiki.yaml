@@ -1,5 +1,5 @@
 services:
-  mediawiki-fpm:
+  wiki:
     container_name: wiki
     image: ossmediawiki:1.45.1
     networks:
@@ -9,6 +9,8 @@ services:
       - .env.mediawiki
     volumes:
       - mediawiki_uploads:/var/www/html/images
+      # place your wiki config into the coresponding folder and uncomment the line below
+      #- ../conf/wiki/LocalSettings.php:/var/www/html/LocalSettings.php:ro
   wiki_db:
     container_name: wiki_db
     image: mariadb:12.1.2-noble
