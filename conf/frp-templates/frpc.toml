@@ -1,11 +1,11 @@
-user = "$HOSTNAME"
-auth.method = "token"
-auth.token = "$AUTH_TOKEN"
-serverAddr = ".local"
+user = \"$HOSTNAME\"
+auth.method = \"token\"
+auth.token = \"$AUTH_TOKEN\"
+serverAddr = \".local\"
 serverPort = 12048
 # Logging settings
-log.to = "/etc/frp/frpc.log"
+log.to = \"/etc/frp/frpc.log\"
 # trace, debug, info, warn, error
-log.level = "info"
+log.level = \"info\"
 log.maxDays = 7
-includes = [ "$FRP_DIR/conf.d/*.toml" ]
+includes = [ \"/etc/frp/conf.d/*.toml\" ]

@@ -1,6 +1,7 @@
 services:
   nginx:
     image: nginx:trixie
+    container_name: nginx
     volumes:
       - ../conf/nginx:/etc/nginx/conf.d
       - mediawiki_full:/var/www/mediawiki
