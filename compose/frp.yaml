@@ -1,6 +1,7 @@
 services:
   frp:
-    image: snowdreamtech/frpc:trixie
+    image: ossmediafrp:latest
+    #image: snowdreamtech/frpc:trixie
     volumes:
       - ../conf/frp:/etc/frp
     networks:

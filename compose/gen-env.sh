@@ -16,21 +16,22 @@ function gen_env(){
     echo "$processed_name file generated"
   fi
 }
+function gen_yaml(){
+  source_conf="$1"
+  processed_name="$2"
+  if [[ -f $processed_name ]];then
+    echo "$processed_name exists"
+  else
+    env_contents=$(cat $source_conf)
+    eval "echo \"$env_contents\"" | tee $processed_name > /dev/null
+    echo "$processed_name file generated"
+  fi
+}
 
 for i in .*.template;do
   gen_env $i
 done
 
-# process compose file
-if [[ -f ./compose.yaml ]];then
-  echo "compose file exists"
-else
-  cp main-template.yaml compose.yaml
-  echo "compose.yaml generated"
-fi
-if [[ -f ./mediawiki.yaml ]];then
-  echo "mediawiki.yaml exists"
-else
-  cp zz-mediawiki.yaml mediawiki.yaml
-  echo "mediawiki.yaml generated"
-fi
+gen_yaml zz-compose.yaml compose.yaml
+gen_yaml zz-mediawiki.yaml mediawiki.yaml
+gen_yaml zz-mediawiki-fpm.yaml mediawiki-fpm.yaml

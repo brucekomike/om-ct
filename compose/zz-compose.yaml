@@ -1,6 +1,7 @@
 include:
   #(disable as your wish)
-  - mediawiki.yaml
+  #- mediawiki.yaml
+  - mediawiki-fpm.yaml
   - nextcloud.yaml
   - overleaf.yaml
   - gitlab.yaml

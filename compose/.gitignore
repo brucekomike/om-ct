@@ -2,3 +2,4 @@
 !.*.template
 compose.yaml
 mediawiki.yaml
+mediawiki-fpm.yaml

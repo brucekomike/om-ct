@@ -4,25 +4,38 @@ services:
       - cloud_db
     container_name: cloud
     image: nextcloud:32.0.5-fpm
-    networks:
-      - front_tier
-      - back_tier
     env_file:
       - .env.nextcloud
+    network_mode: "host"
     volumes:
       - cloud_full:/var/www/html
       - cloud_full:/var/www/nextcloud
+    extra_hosts:
+      - "cloud_db:127.0.0.1"
   cloud_db:
     container_name: cloud_db
     image: mariadb:12.1.2-noble
     env_file:
       - .env.nextcloud
-    networks:
-      - back_tier
     volumes:
       - cloud_db_data:/var/lib/mysql
       - cloud_db_backups:/backups
+    network_mode: "host"
+  nginx:
+    image: nginx:trixie
+    volumes:
+      - ../conf/nginx:/etc/nginx/conf.d
+      - cloud_full:/var/www/nextcloud
+    networks:
+      - front_tier
+    ports:
+      - "80:80"
 volumes:
   cloud_db_backups:
   cloud_db_data:
   cloud_full:
+networks:
+  front_tier:
+    driver: bridge
+  back_tier:
+    driver: bridge

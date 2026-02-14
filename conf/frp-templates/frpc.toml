@@ -4,7 +4,7 @@ auth.token = "$AUTH_TOKEN"
 serverAddr = ".local"
 serverPort = 12048
 # Logging settings
-log.to = "$HFRP_DIR/frpc.log"
+log.to = "/etc/frp/frpc.log"
 # trace, debug, info, warn, error
 log.level = "info"
 log.maxDays = 7

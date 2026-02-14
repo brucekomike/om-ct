@@ -6,7 +6,7 @@ name = "http"
 type = "http"
 localIP = "pkg"
 localPort = 80
-customDomains = ["your-domain.local"]
+customDomains = [$site_url_text]
 transport.useEncryption = true
 transport.useCompression = true
 
@@ -15,7 +15,7 @@ name = "https"
 type = "https"
 localIP = "127.0.0.1"
 localPort = 443
-customDomains = ["your-domain.local"]
+customDomains = [$site_url_text]
 transport.useEncryption = true
 transport.useCompression = true
 
