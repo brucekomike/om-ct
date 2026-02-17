@@ -7,7 +7,8 @@ include:
   - gitlab.yaml
   # reverse proxy
   - frp.yaml
-  - nginx.yaml
+  #- nginx.yaml
+  - nginx-certbot.yaml
   # unified-login
   - keycloak.yaml
   - openldap.yaml

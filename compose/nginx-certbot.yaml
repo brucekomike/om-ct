@@ -1,0 +1,27 @@
+services:
+  nginx:
+    image: jonasal/nginx-certbot:latest
+    depends_on:
+      - frp
+    container_name: nginx
+    volumes:
+      - ../conf/nginx:/etc/nginx/user_conf.d
+      - mediawiki_full:/var/www/mediawiki
+      - cloud_full:/var/www/nextcloud
+      - nginx_secrets:/etc/letsencrypt
+    networks:
+      - front_tier
+      - frp
+    ports:
+      - "80:80"
+    env_file:
+      - .env.nginx
+networks:
+  front_tier:
+    driver: bridge
+  frp:
+    driver: bridge
+  back_tier:
+    driver: bridge
+volumes:
+  nginx_secrets:
