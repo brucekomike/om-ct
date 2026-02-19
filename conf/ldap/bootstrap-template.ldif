@@ -1,0 +1,9 @@
+# Users
+dn: ou=users,dc=example,dc=com
+objectclass: organizationalUnit
+ou: users
+
+# Groups
+dn: ou=groups,dc=example,dc=com
+objectclass: organizationalUnit
+ou: groups

@@ -21,7 +21,21 @@ services:
       - back_tier
     volumes:
       - keycloak_db_data:/var/lib/postgresql
+  openldap:
+    image: vegardit/openldap
+    container_name: openldap
+    env_file:
+      - .env.openldap
+    networks:
+      - back_tier
+    ports:
+      - "389:389"
+    volumes:
+      - openldap_data:/var/lib/ldap
+      - openldap_config:/etc/ldap/slapd.d
 networks:
   back_tier:
 volumes:
   keycloak_db_data:
+  openldap_data:
+  openldap_config:

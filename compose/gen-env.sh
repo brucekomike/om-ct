@@ -35,3 +35,5 @@ done
 gen_yaml zz-compose.yaml compose.yaml
 gen_yaml zz-mediawiki.yaml mediawiki.yaml
 gen_yaml zz-mediawiki-fpm.yaml mediawiki-fpm.yaml
+
+echo ".env.openldap needs manual adjustments"

@@ -16,3 +16,5 @@ services:
       - back_tier
     volumes:
       - keycloak_db_data:/var/lib/postgresql/data
+volumes:
+  keycloak_db_data:
