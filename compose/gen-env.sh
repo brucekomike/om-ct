@@ -27,7 +27,7 @@ function gen_yaml(){
     echo "$processed_name file generated"
   fi
 }
-
+source ../conf/nginx-templates-ssl/.env
 for i in .*.template;do
   gen_env $i
 done

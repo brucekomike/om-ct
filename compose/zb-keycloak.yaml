@@ -2,11 +2,16 @@ services:
   keycloak:
     image: keycloak/keycloak:latest
     container_name: keycloak
+    depends_on:
+      - keycloak_db
     env_file:
       - .env.keycloak
     networks:
       - back_tier
-      - front_tier
+    command:
+      - start-dev
+    ports:
+      - "8080:8080"
   keycloak_db:
     image: postgres:latest
     container_name: keycloak_db
@@ -15,4 +20,8 @@ services:
     networks:
       - back_tier
     volumes:
-      - keycloak_db_data:/var/lib/postgresql/data
+      - keycloak_db_data:/var/lib/postgresql
+networks:
+  back_tier:
+volumes:
+  keycloak_db_data:
