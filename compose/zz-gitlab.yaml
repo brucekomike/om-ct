@@ -11,6 +11,19 @@ services:
         nginx['enable'] = false
         web_server['external_users'] = ['www-data']
         gitlab_rails['trusted_proxies'] = [ '172.0.0.0/24' ]
+        gitlab_rails['smtp_enable'] = true
+        gitlab_rails['smtp_address'] = \"${SMTP_ADDRESS}\"
+        gitlab_rails['smtp_port'] = ${SMTP_PORT}
+        gitlab_rails['smtp_user_name'] = \"${SMTP_USER_NAME}\"
+        gitlab_rails['smtp_password'] = \"${SMTP_PASSWORD}\"
+        gitlab_rails['smtp_domain'] = \"${SMTP_DOMAIN}\"
+        gitlab_rails['smtp_authentication'] = "login"
+        gitlab_rails['smtp_enable_starttls_auto'] = false
+        gitlab_rails['smtp_tls'] = true
+        gitlab_rails['gitlab_email_from'] = '${GITLAB_EMAIL_FROM}'
+        gitlab_rails['gitlab_email_display_name'] = '${GITLAB_EMAIL_DISPLAY_NAME}'
+        gitlab_rails['gitlab_email_reply_to'] = '${GITLAB_EMAIL_REPLY_TO}'
+        
     networks:
       - front_tier
     volumes:
