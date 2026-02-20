@@ -26,6 +26,5 @@ services:
 volumes:
   wiki_db_backups:
   wiki_db_data:
-  mediawiki_localsettings:
   mediawiki_uploads:
   mediawiki_full:
