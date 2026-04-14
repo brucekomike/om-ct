@@ -1,6 +1,6 @@
 services:
   frp:
-    image: ossmediafrp:latest
+    image: ghcr.io/brucekomike/frp-ct-server:latest
     #image: snowdreamtech/frpc:trixie
     env_file:
       - .env.frp

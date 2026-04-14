@@ -49,4 +49,5 @@ function gen_env(){
 
 mkdir -p ../frp/conf.d
 gen_env frpc.toml ../frp/frpc.toml
+gen_env frps.toml ../frp/frps.toml
 gen_env conf.d/frpc.toml ../frp/conf.d/frpc.toml

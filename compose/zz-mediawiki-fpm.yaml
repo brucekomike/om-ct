@@ -1,7 +1,7 @@
 services:
   wiki:
     container_name: wiki
-    image: ossmediawiki:1.45.1-fpm
+    image: ghcr.io/brucekomike/expand-mediawiki-fpm:1.45
     networks:
       - front_tier
       - back_tier

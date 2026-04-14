@@ -1,0 +1,10 @@
+services:
+  frp:
+    image: ghcr.io/brucekomike/frp-ct-client:latest
+    #image: snowdreamtech/frpc:trixie
+    env_file:
+      - .env.frp
+    volumes:
+      - ../conf/frp:/etc/frp
+    networks:
+      - frp

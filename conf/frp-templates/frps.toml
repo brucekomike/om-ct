@@ -1,0 +1,20 @@
+bindAddr = \"0.0.0.0\"
+bindPort = 12048
+kcpBindPort = 12048
+auth.method = \"token\"
+auth.token = \"\$GENERATED_TOKEN\"
+vhostHTTPPort = 80
+vhostHTTPSPort = 443
+allowPorts = [
+  { single = 80 },
+  { single = 443 },
+  { start = 20000, end = 30000 }
+]
+log.to = \"\$FRP_DIR/frps.log\"
+log.level = "info"
+log.maxDays = 7
+custom404Page = \"\$FRP_DIR/404.html\"
+# sshTunnelGateway.bindPort = 12022
+# sshTunnelGateway.privateKeyFile = \"\$HOME/.ssh/id_rsa\"
+# sshTunnelGateway.autoGenPrivateKeyPath = ""
+# sshTunnelGateway.authorizedKeysFile = \"\$HOME/.ssh/authorized_keys\"
