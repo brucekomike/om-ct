@@ -9,7 +9,7 @@ services:
       - mediawiki_full:/var/www/mediawiki
       - cloud_full:/var/www/nextcloud
       - nginx_secrets:/etc/letsencrypt
-      # - ../conf/docs/docs:/var/www/docs
+      - ../conf/docs:/var/www/docs
     networks:
       - front_tier
       - frp
