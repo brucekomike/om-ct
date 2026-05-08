@@ -22,3 +22,9 @@ for config in "${nginx_config_list[@]}"; do
   echo "Copying $config to ngiox dir"
   gen_env "$config" ../nginx/$config
 done
+for config in "${nginx_doc_list[@]}"; do
+  echo "Copying $config.conf to ngiox dir"
+  export DOCNAME=$config
+  export DOCURL=$config.$MURL
+  gen_env "doc.conf" ../nginx/$config.conf
+done
