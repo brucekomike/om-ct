@@ -3,7 +3,7 @@ set -euo pipefail
 
 repo_root="$(cd "$(dirname "$0")/.." && pwd)"
 backup_root="${1:-$HOME/back-configs}"
-timestamp="$(date +%Y%m%d-%H%M%S)"
+timestamp="$(date +%Y%m%d)"
 archive_path="$backup_root/conf-configs-$timestamp.tar.gz"
 manifest_path="$backup_root/conf-configs-$timestamp.files.txt"
 

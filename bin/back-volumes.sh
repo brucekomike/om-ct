@@ -2,7 +2,7 @@
 set -euo pipefail
 
 backup_root="${1:-$HOME/back-volumes}"
-timestamp="$(date +%Y%m%d-%H%M%S)"
+timestamp="$(date +%Y%m%d)"
 workdir="$(mktemp -d)"
 bundle_dir="$workdir/docker-volumes-$timestamp"
 archive_path="$backup_root/docker-volumes-$timestamp.tar.gz"
