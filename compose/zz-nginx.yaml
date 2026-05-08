@@ -4,8 +4,8 @@ services:
     container_name: nginx
     volumes:
       - ../conf/nginx:/etc/nginx/conf.d
-      - mediawiki_full:/var/www/mediawiki
-      - cloud_full:/var/www/nextcloud
+      # - mediawiki_full:/var/www/mediawiki
+      # - cloud_full:/var/www/nextcloud
     networks:
       - front_tier
       - frp

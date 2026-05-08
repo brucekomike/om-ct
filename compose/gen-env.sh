@@ -35,5 +35,7 @@ done
 gen_yaml zz-compose.yaml compose.yaml
 gen_yaml zz-mediawiki.yaml mediawiki.yaml
 gen_yaml zz-mediawiki-fpm.yaml mediawiki-fpm.yaml
+gen_yaml zz-nginx.yaml nginx.yaml
+gen_yaml zz-nginx-certbot.yaml nginx-certbot.yaml
 
 echo ".env.openldap needs manual adjustments"
