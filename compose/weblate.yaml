@@ -1,0 +1,46 @@
+services:
+  weblate_cache:
+    image: valkey/valkey:9.0.3
+    volumes:
+    - redis-data:/data
+    command: [valkey-server, --save, '60', '1', --loglevel, warning]
+    restart: always
+    read_only: true
+    networks:
+      - back_tier
+  weblate_database:
+    image: postgres:18-alpine
+    volumes:
+    - postgres-data:/var/lib/postgresql
+    env_file:
+    - ./.env.weblate
+    restart: always
+    networks:
+      - back_tier
+  weblate:
+    image: weblate/weblate
+    depends_on:
+    - weblate_cache
+    - weblate_database
+    networks:
+      - back_tier
+      - front_tier
+    volumes:
+    - weblate-data:/app/data
+    - weblate-cache:/app/cache
+    environment:
+      WEBLATE_ENABLE_HTTPS: 1
+      WEBLATE_IP_PROXY_HEADER: HTTP_X_FORWARDED_FOR
+      WEBLATE_SECURE_PROXY_SSL_HEADER: HTTP_X_FORWARDED_PROTO,https
+    env_file:
+    - ./.env.weblate
+    restart: always
+    read_only: true
+    tmpfs:
+    - /run
+    - /tmp
+volumes:
+  weblate-cache: {}
+  weblate-data: {}
+  postgres-data: {}
+  redis-data: {}

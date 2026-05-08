@@ -5,6 +5,7 @@ include:
   - nextcloud.yaml
   - overleaf.yaml
   - gitlab.yaml
+  - weblate.yaml
   # reverse proxy
   - frp.yaml
   #- nginx.yaml
