@@ -27,10 +27,16 @@ for enabled_site in "${nginx_config_list[@]}"; do
     "keycloak.conf")
       site_list+=("$KEYCLOAKURL")
       ;;
+    "weblate.conf")
+      site_list+=("$WEBLATEURL")
+      ;;
     *)
       echo "Warning: Unknown site '$enabled_site' in nginx_config_list. Skipping."
       ;;
   esac
+done
+for doc_site in "${nginx_doc_list[@]}"; do
+  site_list+=("$doc_site"."$MAIN_DOMAIN")
 done
 site_url_text=$(printf "\"%s\"\n" "${site_list[@]}" | paste -sd ",\n" -)
 echo $site_url_text
