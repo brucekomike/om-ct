@@ -65,8 +65,13 @@ fi
 # --- Rename and Archive ---
 echo "Renaming build output to '$static_dir_name'..."
 # Remove target dir if it exists before moving
-rm -rf "$static_dir_final_abs"
-mv "$build_output_dir_abs" "$static_dir_final_abs"
+
+if [[ "$static_dir_name" == "html" ]]; then
+  echo "Warning: Target static dir name is 'html', which is the same as the build output leaf. This will overwrite the build output. Proceeding with caution."
+else
+  rm -rf "$static_dir_final_abs"
+  mv "$build_output_dir_abs" "$static_dir_final_abs"
+fi
 
 timestamp=$(date +%Y%m%d%H%M%S)
 archive_filename="html_docs_${static_dir_name}_${timestamp}.tar.gz"
