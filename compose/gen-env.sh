@@ -37,5 +37,6 @@ gen_yaml zz-mediawiki.yaml mediawiki.yaml
 gen_yaml zz-mediawiki-fpm.yaml mediawiki-fpm.yaml
 gen_yaml zz-nginx.yaml nginx.yaml
 gen_yaml zz-nginx-certbot.yaml nginx-certbot.yaml
+gen_yaml zz-gitlab.yaml gitlab.yaml
 
 echo ".env.openldap needs manual adjustments"

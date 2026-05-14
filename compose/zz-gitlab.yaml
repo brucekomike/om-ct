@@ -8,7 +8,9 @@ services:
       GITLAB_OMNIBUS_CONFIG: |
         # Add any other gitlab.rb configuration here, each on its own line
         external_url '${GITLAB_URL}'
-        nginx['enable'] = false
+        # nginx['enable'] = false
+        nginx['listen_port'] = 80
+        nginx['listen_https'] = false
         web_server['external_users'] = ['www-data']
         gitlab_rails['trusted_proxies'] = [ '172.0.0.0/24' ]
         gitlab_rails['smtp_enable'] = true
