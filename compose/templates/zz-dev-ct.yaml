@@ -10,4 +10,4 @@ services:
     env_file:
       - .env.devct
     networks:
-      - back_tier
+      - front_tier
