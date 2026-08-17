@@ -2,14 +2,10 @@ services:
   keycloak:
     image: keycloak/keycloak:latest
     container_name: keycloak
-    command:
-      - start
-      - --proxy-headers
-      - forwarded
-      - --proxy-trusted-addresses=172.16.0.0/12
-      - --http-enabled
-      - "true"
-      - --optimized
+    command: |
+      start --proxy-headers forwarded
+      --proxy-trusted-addresses=172.16.0.0/12
+      --http-enabled true
     env_file:
       - .env.keycloak
     networks:
