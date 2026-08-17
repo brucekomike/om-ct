@@ -47,6 +47,11 @@ gen_yaml templates/zz-frp-server.yaml frp-server.yaml
 # standalone variants (dev/test)
 gen_yaml templates/za-nextcloud.yaml za-nextcloud.yaml
 gen_yaml templates/zb-keycloak.yaml zb-keycloak.yaml
+gen_yaml templates/zz-trilium.yaml trilium.yaml
 gen_yaml templates/zz-dev-ct.yaml dev-ct.yaml
 
+echo "==== ATTENTION attention ATTENTION===="
+echo ""
 echo ".env.openldap needs manual adjustments"
+echo ""
+echo "==== ATTENTION attention ATTENTION===="
