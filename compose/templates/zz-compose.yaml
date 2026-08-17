@@ -7,7 +7,8 @@ include:
   - gitlab.yaml
   - weblate.yaml
   # reverse proxy
-  - frp.yaml
+  - frp-client.yaml
+  - frp-server.yaml
   #- nginx.yaml
   - nginx-certbot.yaml
   # unified-login

@@ -2,6 +2,14 @@ services:
   dev-ct:
     image: ghcr.io/brucekomike/cct-ct-noble-plain-cd:main
     container_name: dev-ct
+    command:
+      - start
+      - --proxy-headers
+      - forwarded
+      - --proxy-trusted-addresses=172.16.0.0/12
+      - --http-enabled
+      - "true"
+      - --optimized
     Volumes:
       - ../conf/claude:/root/.claude
       - ../conf/dev-ct:/root/Workspace
