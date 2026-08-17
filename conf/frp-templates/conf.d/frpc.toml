@@ -2,7 +2,7 @@
 # unique in ALL clients
 # otherwise config overwritten triggered
 [[proxies]]
-name = \"http\"
+name = \"http-$HOSTNAME\"
 type = \"http\"
 localIP = \"nginx\"
 localPort = 80
@@ -11,7 +11,7 @@ transport.useEncryption = true
 transport.useCompression = true
 
 [[proxies]]
-name = \"https\"
+name = \"https-$HOSTNAME\"
 type = \"https\"
 localIP = \"nginx\"
 localPort = 443
@@ -20,7 +20,7 @@ transport.useEncryption = true
 transport.useCompression = true
 
 [[proxies]]
-name = \"ssh\"
+name = \"ssh-$HOSTNAME\"
 type = \"tcp\"
 localIP = \"gitlab\"
 localPort = 22

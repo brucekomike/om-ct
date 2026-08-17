@@ -9,3 +9,5 @@ services:
       - "9001:8080"
     env_file:
       - .env.devct
+    networks:
+      - back_tier
