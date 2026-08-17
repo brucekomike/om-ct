@@ -11,7 +11,8 @@ services:
       # - gitlab_data:/var/opt/gitlab
       - nginx_secrets:/etc/letsencrypt
       - ../conf/docs:/var/www/docs
-
+    extra_hosts:
+      - "overleaf:host-gateway"
     networks:
       - front_tier
       - frp
