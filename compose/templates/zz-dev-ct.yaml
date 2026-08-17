@@ -1,0 +1,11 @@
+services:
+  dev-ct:
+    image: ghcr.io/brucekomike/cct-ct-noble-plain-cd:main
+    container_name: dev-ct
+    Volumes:
+      - ../conf/claude:/root/.claude
+      - ../conf/dev-ct:/root/Workspace
+    ports:
+      - "9001:8080"
+    env_file:
+      - .env.devct
