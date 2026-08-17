@@ -50,8 +50,9 @@ done
 for doc_site in "${nginx_doc_list[@]}"; do
   site_list+=("$doc_site"."$MAIN_DOMAIN")
 done
-site_url_text=$(printf "\"%s\"\n" "${site_list[@]}" | paste -sd ",\n" -)
-echo $site_url_text
+site_url_text=$(printf "\"%s\",\n" "${site_list[@]}" )
+site_url_text=${site_url_text%,}
+echo -e "$site_url_text"
 
 function gen_env(){
   source_conf="$1"
