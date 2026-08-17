@@ -36,6 +36,9 @@ for enabled_site in "${nginx_config_list[@]}"; do
     "dev-ct.conf")
       site_list+=("$DEVCTURL")
       ;;
+    "trilium.conf")
+      site_list+=("$TRILIUMURL")
+      ;;
     "pve.conf")
       site_list+=("$PVEURL")
       ;;
