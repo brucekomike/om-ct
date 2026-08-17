@@ -1,9 +1,2 @@
-.env*
-!.*.template
-compose.yaml
-mediawiki.yaml
-mediawiki-fpm.yaml
-nginx.yaml
-nginx-certbot.yaml
-gitlab.yaml
-overleaf.yaml
+/.env*
+/*.yaml

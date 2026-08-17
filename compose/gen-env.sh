@@ -7,7 +7,7 @@ function generate_token() {
 }
 function gen_env(){
   source_conf="$1"
-  processed_name="${1%.template}"
+  processed_name="${2:-${1%.template}}"
   if [[ -f $processed_name ]];then
     echo "$processed_name exists"
   else
@@ -28,15 +28,24 @@ function gen_yaml(){
   fi
 }
 source ../conf/nginx-templates-ssl/.env
-for i in .*.template;do
-  gen_env $i
+for i in templates/.*.template;do
+  gen_env "$i" "$(basename "$i" .template)"
 done
 
-gen_yaml zz-compose.yaml compose.yaml
-gen_yaml zz-mediawiki.yaml mediawiki.yaml
-gen_yaml zz-mediawiki-fpm.yaml mediawiki-fpm.yaml
-gen_yaml zz-nginx.yaml nginx.yaml
-gen_yaml zz-nginx-certbot.yaml nginx-certbot.yaml
-gen_yaml zz-gitlab.yaml gitlab.yaml
+gen_yaml templates/zz-compose.yaml compose.yaml
+gen_yaml templates/zz-mediawiki.yaml mediawiki.yaml
+gen_yaml templates/zz-mediawiki-fpm.yaml mediawiki-fpm.yaml
+gen_yaml templates/zz-nginx.yaml nginx.yaml
+gen_yaml templates/zz-nginx-certbot.yaml nginx-certbot.yaml
+gen_yaml templates/zz-gitlab.yaml gitlab.yaml
+gen_yaml templates/zz-nextcloud.yaml nextcloud.yaml
+gen_yaml templates/zz-keycloak.yaml keycloak.yaml
+gen_yaml templates/zz-openldap.yaml openldap.yaml
+gen_yaml templates/zz-weblate.yaml weblate.yaml
+gen_yaml templates/zz-frp-client.yaml frp-client.yaml
+gen_yaml templates/zz-frp-server.yaml frp-server.yaml
+# standalone variants (dev/test)
+gen_yaml templates/za-nextcloud.yaml za-nextcloud.yaml
+gen_yaml templates/zb-keycloak.yaml zb-keycloak.yaml
 
 echo ".env.openldap needs manual adjustments"
