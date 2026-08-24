@@ -1,7 +1,7 @@
 services:
   wiki:
     container_name: wiki
-    image: ghcr.io/brucekomike/expand-mediawiki:1.46
+    image: ghcr.io/brucekomike/expand-mediawiki:main
     networks:
       - front_tier
       - back_tier
