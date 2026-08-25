@@ -7,8 +7,11 @@ if [ -f ../nginx-templates/.env ]; then
 elif [ -f ../nginx-templates-ssl/.env ]; then
   echo "Fallback: loading environment variables from ../nginx-templates-ssl/.env"
   source ../nginx-templates-ssl/.env
+elif [ -f ../nginx-templates-frp/.env ]; then
+  echo "Fallback: loading environment variables from ../nginx-templates-frp/.env"
+  source ../nginx-templates-frp/.env
 else
-  echo "Error: no .env found in ../nginx-templates or ../nginx-templates-ssl."
+  echo "Error: no .env found in ../nginx-templates, ../nginx-templates-ssl or ../nginx-templates-frp."
   exit 1
 fi
 
