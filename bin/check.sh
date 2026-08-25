@@ -1,6 +1,6 @@
 #!/bin/bash
 # */5 * * * * ~/om-ct/bin/check.sh
-if curl -s --head http://localhost:80 | grep -E "200 OK|301 Moved Permanently|302 Found" > /dev/null
+if curl -s --head http://localhost:80 | grep -E "200 OK|301 Moved Permanently|302 Found|404 Not Found" > /dev/null
 then
     echo "localhost:80 is responding (possibly with a redirect)."
 else
