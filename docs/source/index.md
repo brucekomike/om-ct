@@ -9,5 +9,6 @@ hide-toc: true
 ```{toctree}
 intro/index
 manual/index
+reference/index
 ```
 

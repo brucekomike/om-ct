@@ -8,9 +8,10 @@ services:
     env_file:
       - .env.mediawiki
     volumes:
-      - mediawiki_uploads:/var/www/html/images
+      - mediawiki_full:/var/www/html
+      - mediawiki_full:/var/www/mediawiki
       # place your wiki config into the coresponding folder and uncomment the line below
-      #- ../conf/wiki/LocalSettings.php:/var/www/html/LocalSettings.php:ro
+      #- ../conf/wiki/LocalSettings.php:/var/www/mediawiki/LocalSettings.php:ro
   wiki_db:
     container_name: wiki_db
     image: mariadb:12.1.2-noble
@@ -24,5 +25,4 @@ services:
 volumes:
   wiki_db_backups:
   wiki_db_data:
-  mediawiki_uploads:
   mediawiki_full:

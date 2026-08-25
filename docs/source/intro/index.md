@@ -1,18 +1,19 @@
-# intro
-this project is a containerized solution for some my freqently used apps that need hosting.
+# 简介
+本项目是一套容器化方案，用于托管我日常使用的一些应用。
 
-## list
-### proxy
+## 清单
+### 代理
 - frp
 - nginx
-### apps
+### 应用
 - mediawiki
 - nextcloud
 - gitlab
 - overleaf
 - weblate
-### auth apps
+- trilium
+### 认证应用
 - keycloak
 - openldap
-### static files
+### 静态文件
 - sphinx

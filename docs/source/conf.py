@@ -11,7 +11,7 @@ project = 'om-ct'
 copyright = '2026, brucekomike'
 author = 'brucekomike'
 release = 'v0.1'
-language='en'
+language='zh_CN'
 ## change required <<<
 # 'en' 'jp' 'zh_CN'
 

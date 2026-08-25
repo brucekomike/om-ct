@@ -6,6 +6,7 @@ include:
   - overleaf.yaml
   - gitlab.yaml
   - weblate.yaml
+  - trilium.yaml
   # reverse proxy
   - frp-client.yaml
   - frp-server.yaml
