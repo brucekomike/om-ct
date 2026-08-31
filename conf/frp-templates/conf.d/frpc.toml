@@ -9,7 +9,7 @@ localPort = 80
 customDomains = [$site_url_text]
 transport.useEncryption = true
 transport.useCompression = true
-transport.proxyProtocolVersion = "v2"
+transport.proxyProtocolVersion = \"v2\"
 
 [[proxies]]
 name = \"https-$HOSTNAME\"
@@ -19,7 +19,7 @@ localPort = 443
 customDomains = [$site_url_text]
 transport.useEncryption = true
 transport.useCompression = true
-transport.proxyProtocolVersion = "v2"
+transport.proxyProtocolVersion = \"v2"\
 
 [[proxies]]
 name = \"ssh-$HOSTNAME\"
