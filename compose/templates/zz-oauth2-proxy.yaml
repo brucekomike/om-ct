@@ -1,0 +1,16 @@
+services:
+  oauth2-proxy:
+    image: quay.io/oauth2-proxy/oauth2-proxy:latest
+    container_name: oauth2-proxy
+    depends_on:
+      casdoor:
+        condition: service_healthy
+      rustpad:
+        condition: service_started
+    env_file:
+      - .env.oauth2-proxy
+    ports:
+      - "127.0.0.1:4180:4180"
+    networks:
+      - front_tier
+    restart: unless-stopped

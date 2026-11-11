@@ -5,7 +5,7 @@
 - **`compose.yaml`**：主入口，通过 `include` 列表引入各服务的 compose 文件，按需注释即可启用/停用服务。
 - **`templates/zz-*.yaml`**：各服务的 compose 模板，变量由环境变量插值。
 - **`templates/.env.*.template`**：各服务的环境变量模板，其中的 `$(generate_token)` 会在生成时填入随机值。
-- **`gen-env.sh`**：生成脚本，读取 `../conf/nginx-templates-ssl/.env`，把上述模板渲染为 `compose/` 下的 `*.yaml` 与 `templates/.env.*`。已存在的文件不会被覆盖，可重复运行：
+- **`gen-env.sh`**：生成脚本，读取 `../conf/nginx-templates-ssl/.env`，把上述模板渲染为 `compose/` 下的 `*.yaml` 与 `.env.*`。已存在的文件不会被覆盖，可重复运行：
 
   ```bash
   cd compose

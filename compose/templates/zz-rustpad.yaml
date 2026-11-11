@@ -1,0 +1,27 @@
+services:
+  rustpad:
+    image: ekzhang/rustpad:latest
+    container_name: rustpad
+    depends_on:
+      rustpad-data-init:
+        condition: service_completed_successfully
+    environment:
+      PORT: 3030
+      EXPIRY_DAYS: 30
+      SQLITE_URI: sqlite:///data/rustpad.db
+    networks:
+      - front_tier
+    volumes:
+      - rustpad_data:/data
+    ports:
+      - "127.0.0.1:3030:3030"
+    restart: unless-stopped
+  rustpad-data-init:
+    image: alpine:3.20
+    command: ["sh", "-c", "chown -R 1000:1000 /data"]
+    networks:
+      - front_tier
+    volumes:
+      - rustpad_data:/data
+volumes:
+  rustpad_data:

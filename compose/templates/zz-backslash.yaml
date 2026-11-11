@@ -1,0 +1,134 @@
+services:
+  backslash-compiler-image:
+    build:
+      context: https://github.com/Manan-Santoki/Backslash.git#master
+      dockerfile: docker/texlive/Dockerfile
+    image: backslash-compiler
+    pull_policy: build
+    entrypoint: ["true"]
+    restart: "no"
+    networks:
+      - back_tier
+
+  backslash-db:
+    image: postgres:16-alpine
+    container_name: backslash-db
+    env_file:
+      - .env.backslash
+    volumes:
+      - backslash_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U backslash -d backslash"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - back_tier
+    restart: unless-stopped
+
+  backslash-redis:
+    image: redis:7-alpine
+    container_name: backslash-redis
+    command: redis-server --appendonly yes --maxmemory-policy noeviction
+    volumes:
+      - backslash_redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - back_tier
+    restart: unless-stopped
+
+  backslash-migrate:
+    build:
+      context: https://github.com/Manan-Santoki/Backslash.git#master
+      dockerfile: apps/web/Dockerfile
+    command: ["node", "apps/web/scripts/migrate.mjs"]
+    env_file:
+      - .env.backslash
+    depends_on:
+      backslash-db:
+        condition: service_healthy
+    networks:
+      - back_tier
+    restart: "no"
+
+  backslash-app:
+    build:
+      context: https://github.com/Manan-Santoki/Backslash.git#master
+      dockerfile: apps/web/Dockerfile
+    container_name: backslash-app
+    environment:
+      HOSTNAME: 0.0.0.0
+      NODE_ENV: production
+      TEMPLATES_PATH: /app/templates
+    env_file:
+      - .env.backslash
+    volumes:
+      - backslash_project_data:/data/backslash
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      backslash-migrate:
+        condition: service_completed_successfully
+      backslash-compiler-image:
+        condition: service_completed_successfully
+      backslash-redis:
+        condition: service_healthy
+      backslash-db:
+        condition: service_healthy
+    networks:
+      - front_tier
+      - back_tier
+    restart: unless-stopped
+
+  backslash-worker:
+    build:
+      context: https://github.com/Manan-Santoki/Backslash.git#master
+      dockerfile: apps/worker/Dockerfile
+    container_name: backslash-worker
+    environment:
+      NODE_ENV: production
+    env_file:
+      - .env.backslash
+    volumes:
+      - backslash_project_data:/data/backslash
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      backslash-migrate:
+        condition: service_completed_successfully
+      backslash-compiler-image:
+        condition: service_completed_successfully
+      backslash-redis:
+        condition: service_healthy
+      backslash-db:
+        condition: service_healthy
+    networks:
+      - back_tier
+    restart: unless-stopped
+
+  backslash-ws:
+    build:
+      context: https://github.com/Manan-Santoki/Backslash.git#master
+      dockerfile: apps/ws/Dockerfile
+    container_name: backslash-ws
+    environment:
+      NODE_ENV: production
+    env_file:
+      - .env.backslash
+    depends_on:
+      backslash-redis:
+        condition: service_healthy
+      backslash-db:
+        condition: service_healthy
+    networks:
+      - front_tier
+      - back_tier
+    restart: unless-stopped
+
+volumes:
+  backslash_postgres_data:
+  backslash_redis_data:
+  backslash_project_data:
+    name: backslash-project-data

@@ -10,6 +10,9 @@
        "wiki.conf"
        "cloud.conf"
        "gitlab.conf"
+       "casdoor.conf"
+       "oauth2-proxy.conf"
+       "rustpad.conf"
        # "dev-ct.conf"
    )
    nginx_doc_list=(

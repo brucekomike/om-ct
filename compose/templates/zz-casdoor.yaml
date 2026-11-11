@@ -1,0 +1,42 @@
+services:
+  casdoor_db:
+    image: postgres:18-alpine
+    container_name: casdoor_db
+    environment:
+      POSTGRES_DB: casdoor
+      POSTGRES_USER: casdoor
+      POSTGRES_PASSWORD: \${CASDOOR_DB_PASSWORD}
+    networks:
+      - back_tier
+    volumes:
+      - casdoor_db_data:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U casdoor -d casdoor"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+  casdoor:
+    image: casbin/casdoor:latest
+    container_name: casdoor
+    depends_on:
+      casdoor_db:
+        condition: service_healthy
+    environment:
+      driverName: \${driverName}
+      dataSourceName: user=casdoor password=\${CASDOOR_DB_PASSWORD} host=casdoor_db port=5432 sslmode=disable dbname=casdoor
+      dbName: \${dbName}
+      httpport: \${httpport}
+      runmode: \${runmode}
+      origin: \${origin}
+      initAdminPassword: \${initAdminPassword}
+    networks:
+      front_tier:
+        aliases:
+          - casdoor.localhost
+      back_tier: {}
+    ports:
+      - "127.0.0.1:8000:8000"
+    restart: unless-stopped
+volumes:
+  casdoor_db_data:

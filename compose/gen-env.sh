@@ -28,9 +28,11 @@ function gen_yaml(){
   fi
 }
 source ../conf/nginx-templates-ssl/.env
+BACKSLASHURL="${BACKSLASHURL:-backslash.$MURL}"
 for i in templates/.*.template;do
   gen_env "$i" "$(basename "$i" .template)"
 done
+source .env.gitlab
 
 gen_yaml templates/zz-compose.yaml compose.yaml
 gen_yaml templates/zz-mediawiki.yaml mediawiki.yaml
@@ -40,6 +42,10 @@ gen_yaml templates/zz-nginx-certbot.yaml nginx-certbot.yaml
 gen_yaml templates/zz-gitlab.yaml gitlab.yaml
 gen_yaml templates/zz-nextcloud.yaml nextcloud.yaml
 gen_yaml templates/zz-keycloak.yaml keycloak.yaml
+gen_yaml templates/zz-casdoor.yaml casdoor.yaml
+gen_yaml templates/zz-oauth2-proxy.yaml oauth2-proxy.yaml
+gen_yaml templates/zz-rustpad.yaml rustpad.yaml
+gen_yaml templates/zz-backslash.yaml backslash.yaml
 gen_yaml templates/zz-openldap.yaml openldap.yaml
 gen_yaml templates/zz-weblate.yaml weblate.yaml
 gen_yaml templates/zz-frp-client.yaml frp-client.yaml

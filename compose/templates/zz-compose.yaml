@@ -3,13 +3,20 @@ include:
   #- mediawiki.yaml
   - mediawiki-fpm.yaml
   - nextcloud.yaml
-  - overleaf.yaml
+  #- overleaf.yaml
   - gitlab.yaml
   - weblate.yaml
   - trilium.yaml
+  # identity, login and collaboration
+  - path: casdoor.yaml
+    env_file: .env.casdoor
+  - oauth2-proxy.yaml
+  - rustpad.yaml
+  - path: backslash.yaml
+    env_file: .env.backslash
   # reverse proxy
   - frp-client.yaml
-  - frp-server.yaml
+  #- frp-server.yaml # alternative to frp-client.yaml; both define a service named frp
   #- nginx.yaml
   - nginx-certbot.yaml
   # unified-login
