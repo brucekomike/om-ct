@@ -53,6 +53,8 @@ gen_yaml templates/zz-frp-server.yaml frp-server.yaml
 # standalone variants (dev/test)
 gen_yaml templates/za-nextcloud.yaml za-nextcloud.yaml
 gen_yaml templates/zb-keycloak.yaml zb-keycloak.yaml
+gen_yaml templates/zc-nextcloud-oidc.yaml zc-nextcloud-oidc.yaml
+gen_yaml templates/nginx-oidc-cloud.conf nginx-oidc-cloud.conf
 gen_yaml templates/zz-trilium.yaml trilium.yaml
 gen_yaml templates/zz-dev-ct.yaml dev-ct.yaml
 

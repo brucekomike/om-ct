@@ -2,3 +2,4 @@
 /templates/.env.*
 !/templates/.env.*.template
 /*.yaml
+/*.conf
