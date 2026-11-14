@@ -8,6 +8,16 @@
 2. Create a Casdoor OIDC application with client ID `rustpad-local`, client secret `local-only-client-secret`, and redirect URL `http://oauth2.localhost:4180/oauth2/callback`.
 3. Start RustPad, Casdoor, and OAuth2 Proxy with Compose, then visit `http://oauth2.localhost:4180`.
 
+`gen-env.sh` does not create the Casdoor application, so step 2 has to be repeated
+on every new host. The failure mode is easy to miss: `/oauth2/start` still answers
+`302` with `client_id=rustpad-local`, and the error only appears when Casdoor sends
+you back, as an HTTP 500 on `/oauth2/callback`. Check that the application really
+exists before assuming OAuth2 Proxy is broken.
+
+Each relying party registers its own callback URL. The one above belongs to OAuth2
+Proxy; other clients use different paths, for example Nextcloud's
+`/apps/user_oidc/code` in [Nextcloud](02-nextcloud.md).
+
 For a public deployment, replace the localhost hostnames, local client secret and admin password; use the public HTTPS URLs and enable secure cookies.
 
 ## Local Docker testing
